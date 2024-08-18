@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playfulness Audit</title>
+    <style>
+        /* Add basic styling for the form */
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f4f4f4;
+            margin: 0;
+        }
+        h1 {
+            color: #ad0000;
+        }
+        .banner {
+            background-color: #ad0000;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .question label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        .result {
+            font-size: 1.5em;
+            margin-top: 20px;
+            color: #ad0000;
+        }
+        input[type="radio"] {
+            accent-color: #ad0000;
+        }
+    </style>
+</head>
+<body>
+    <div class="banner">Playfulness Audit: How Playful Are You?</div>
+    <form id="audit-form">
+        <div class="question">
+            <label for="q1">1. I prioritize play in my life.</label>
+            <input type="radio" name="q1" value="1"> 1
+            <input type="radio" name="q1" value="2"> 2
+            <input type="radio" name="q1" value="3"> 3
+            <input type="radio" name="q1" value="4"> 4
+            <input type="radio" name="q1" value="5"> 5
+        </div>
+
+        <!-- Repeat for each of the 20 questions -->
+
+        <div class="question">
+            <label for="q2">2. People would describe me as a playful person.</label>
+            <input type="radio" name="q2" value="1"> 1
+            <input type="radio" name="q2" value="2"> 2
+            <input type="radio" name="q2" value="3"> 3
+            <input type="radio" name="q2" value="4"> 4
+            <input type="radio" name="q2" value="5"> 5
+        </div>
+
+        <!-- Add all other questions as previously -->
+
+        <div class="question">
+            <label for="q20">20. I use wonder and surprises as ways to explore the world.</label>
+            <input type="radio" name="q20" value="1"> 1
+            <input type="radio" name="q20" value="2"> 2
+            <input type="radio" name="q20" value="3"> 3
+            <input type="radio" name="q20" value="4"> 4
+            <input type="radio" name="q20" value="5"> 5
+        </div>
+
+        <button type="button" onclick="calculateScore()">Get Your Score</button>
+    </form>
+
+    <div class="result" id="result"></div>
+
+    <script>
+        // JavaScript function to calculate the score
+        function calculateScore() {
+            let totalScore = 0;
+            const totalQuestions = 20;
+
+            // Loop through each question to sum the values
+            for (let i = 1; i <= totalQuestions; i++) {
+                const radios = document.getElementsByName(`q${i}`);
+                for (let j = 0; j < radios.length; j++) {
+                    if (radios[j].checked) {
+                        totalScore += parseInt(radios[j].value);
+                    }
+                }
+            }
+
+            // Determine the result message based on the score
+            let resultMessage = '';
+            if (totalScore >= 80) {
+                resultMessage = "Well played! You’re a play-er.";
+            } else if (totalScore >= 60) {
+                resultMessage = "You’re in the game, but your play could use more practice.";
+            } else {
+                resultMessage = "Time to level up your play.";
+            }
+
+            // Display the result
+            document.getElementById('result').innerText = `Your Score: ${totalScore}\n${resultMessage}`;
+        }
+    </script>
+</body>
+</html>
